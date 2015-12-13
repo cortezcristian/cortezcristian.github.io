@@ -319,6 +319,11 @@ pre {
       .post-content h4 {
         font-size: 18px; } }
 
+/* Social */
+.fb-share-button {
+  left: 0 !important;
+  top: -7px !important; }
+
 /**
  * Syntax highlighting styles
  */
