@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Creating an Interactive E-learning Platform"
+title:  "Creating an interactive E-learning Platform"
 date:   2015-12-12 23:01:44 -0300
 categories: jekyll update elearning
 description: Learn how to create an interactive e-learnig Codeschool-like platform 
@@ -8,7 +8,7 @@ comments: true
 ---
 
 Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn't be that difficult using the MEAN stack. 
-Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool like a blog or a cms and the only differentiator would be the quality of the content you generate. 
+Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool (like a blog or a cms) and the only differentiator would be the quality of the content you generate. 
 
 Let's go ahead and setup some goals for the platform:
 

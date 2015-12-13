@@ -6,14 +6,14 @@
 </description>
     <link>https://cortezcristian.github.io/</link>
     <atom:link href="https://cortezcristian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 13 Dec 2015 19:17:23 -0300</pubDate>
-    <lastBuildDate>Sun, 13 Dec 2015 19:17:23 -0300</lastBuildDate>
+    <pubDate>Sun, 13 Dec 2015 19:24:13 -0300</pubDate>
+    <lastBuildDate>Sun, 13 Dec 2015 19:24:13 -0300</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
-        <title>Creating an Interactive E-learning Platform</title>
+        <title>Creating an interactive E-learning Platform</title>
         <description>&lt;p&gt;Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn’t be that difficult using the MEAN stack. 
-Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool like a blog or a cms and the only differentiator would be the quality of the content you generate.&lt;/p&gt;
+Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool (like a blog or a cms) and the only differentiator would be the quality of the content you generate.&lt;/p&gt;
 
 &lt;p&gt;Let’s go ahead and setup some goals for the platform:&lt;/p&gt;
 
