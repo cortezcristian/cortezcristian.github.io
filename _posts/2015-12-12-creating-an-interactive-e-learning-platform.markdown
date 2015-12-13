@@ -15,6 +15,10 @@ Let's go ahead and setup some goals for the platform:
 - Should be able to reproduce videos along with presentations
 - Should present code excercises and real time auto-correction
 
+And the visual specs:
+
+![LMS]({{ site.url }}/assets/lms/lms-mockup.png)
+
 Let's start a new project using `anyandgo`, that is just another MEAN framework using Express basic and some cool conventions. You'll need to install `nodejs`, `mongodb`, `grunt` and `anyandgo-cli`
 {% highlight bash %}
 $ [sudo] npm install -g anyandgo-cli
@@ -29,6 +33,8 @@ This will create a new folder called `lms`, to finish setup just do:
 {% highlight bash %}
 $ cd lms && npm install && grunt
 {% endhighlight %}
+
+
 
 Jekyll also offers powerful support for code snippets:
 
