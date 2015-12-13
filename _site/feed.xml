@@ -6,13 +6,21 @@
 </description>
     <link>https://cortezcristian.github.io/</link>
     <atom:link href="https://cortezcristian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 13 Dec 2015 14:20:00 -0300</pubDate>
-    <lastBuildDate>Sun, 13 Dec 2015 14:20:00 -0300</lastBuildDate>
+    <pubDate>Sun, 13 Dec 2015 16:09:01 -0300</pubDate>
+    <lastBuildDate>Sun, 13 Dec 2015 16:09:01 -0300</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
-        <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+        <title>Creating an Interactive E-learning Platform</title>
+        <description>&lt;p&gt;Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn’t be that difficult. 
+Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool like a blog or a cms and the only differentiator should be the quality of the content you generate.&lt;/p&gt;
+
+&lt;p&gt;Let’s go ahead and setup some goals for the platform:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Should be able to reproduce videos along with presentations&lt;/li&gt;
+  &lt;li&gt;Should present code excercises and real time auto-correction&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
 
@@ -28,13 +36,15 @@
 
 </description>
         <pubDate>Sat, 12 Dec 2015 23:01:44 -0300</pubDate>
-        <link>https://cortezcristian.github.io/jekyll/update/2015/12/12/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">https://cortezcristian.github.io/jekyll/update/2015/12/12/welcome-to-jekyll.html</guid>
+        <link>https://cortezcristian.github.io/jekyll/update/elearning/2015/12/12/creating-an-interactive-e-learning-platform.html</link>
+        <guid isPermaLink="true">https://cortezcristian.github.io/jekyll/update/elearning/2015/12/12/creating-an-interactive-e-learning-platform.html</guid>
         
         
         <category>jekyll</category>
         
         <category>update</category>
+        
+        <category>elearning</category>
         
       </item>
     

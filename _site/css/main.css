@@ -286,6 +286,10 @@ pre {
 /**
  * Posts
  */
+.post-desc {
+  color: #828282;
+  font-size: 15px; }
+
 .post-header {
   margin-bottom: 30px; }
 

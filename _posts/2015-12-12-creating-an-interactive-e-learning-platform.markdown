@@ -1,10 +1,19 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Creating an Interactive E-learning Platform"
 date:   2015-12-12 23:01:44 -0300
-categories: jekyll update
+categories: jekyll update elearning
+description: Learn how to create an interactive e-learnig Codeschool-like platform 
+comments: true
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+
+Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn't be that difficult. 
+Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool like a blog or a cms and the only differentiator should be the quality of the content you generate. 
+
+Let's go ahead and setup some goals for the platform:
+
+- Should be able to reproduce videos along with presentations
+- Should present code excercises and real time auto-correction
 
 To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
 

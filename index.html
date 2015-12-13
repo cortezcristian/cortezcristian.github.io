@@ -13,6 +13,7 @@ layout: default
 
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          {% if post.description %}<p class="post-desc">{{ post.description }}</p>{% endif %}
         </h2>
       </li>
     {% endfor %}
