@@ -8,8 +8,17 @@ module.exports = function (grunt) {
       site: {
         src: ['./_layouts/**/*.html', './_includes/**/*.html'],
         options: {
+          ignorePath: '../',
+          fileTypes: {
+            html: {
+              replace: {
+                js: '<script src="\{\{ site.url\}\}/{{filePath}}"></script>',
+                css: '<link rel="stylesheet" href="\{\{ site.url\}\}/{{filePath}}" />'
+              }
+            }
+          },
           overrides: {
-            "directory": "./bower_components/"
+            "directory": "/bower_components/"
           }
         }
       }
