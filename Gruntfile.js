@@ -5,10 +5,12 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     wiredep: {
-      src: ['./_layouts/**/*', './_includes/**/*'],
-      options: {
-        overrides: {
-          "directory": "./bower_components/"
+      site: {
+        src: ['./_layouts/**/*.html', './_includes/**/*.html'],
+        options: {
+          overrides: {
+            "directory": "./bower_components/"
+          }
         }
       }
     }
