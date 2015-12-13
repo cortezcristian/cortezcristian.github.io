@@ -7,15 +7,28 @@ description: Learn how to create an interactive e-learnig Codeschool-like platfo
 comments: true
 ---
 
-Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn't be that difficult. 
-Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool like a blog or a cms and the only differentiator should be the quality of the content you generate. 
+Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn't be that difficult using the MEAN stack. 
+Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool like a blog or a cms and the only differentiator would be the quality of the content you generate. 
 
 Let's go ahead and setup some goals for the platform:
 
 - Should be able to reproduce videos along with presentations
 - Should present code excercises and real time auto-correction
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+Let's start a new project using `anyandgo`, that is just another MEAN framework using Express basic and some cool conventions. You'll need to install `nodejs`, `mongodb`, `grunt` and `anyandgo-cli`
+{% highlight bash %}
+$ [sudo] npm install -g anyandgo-cli
+{% endhighlight %}
+
+Once you have it, just create a new project:
+{% highlight bash %}
+$ anyandgo init lms
+{% endhighlight %}
+
+This will create a new folder called `lms`, to finish setup just do:
+{% highlight bash %}
+$ cd lms && npm install && grunt
+{% endhighlight %}
 
 Jekyll also offers powerful support for code snippets:
 

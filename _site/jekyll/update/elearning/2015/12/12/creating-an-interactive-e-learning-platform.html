@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Creating an Interactive E-learning Platform</title>
-  <meta name="description" content="Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn’t be that difficult. Nowadays LMS platforms are kind of a big bu...">
+  <meta name="description" content="Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn’t be that difficult using the MEAN stack. Nowadays LMS platforms...">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="https://cortezcristian.github.io/jekyll/update/elearning/2015/12/12/creating-an-interactive-e-learning-platform.html">
@@ -62,8 +62,8 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn’t be that difficult. 
-Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool like a blog or a cms and the only differentiator should be the quality of the content you generate.</p>
+    <p>Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn’t be that difficult using the MEAN stack. 
+Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool like a blog or a cms and the only differentiator would be the quality of the content you generate.</p>
 
 <p>Let’s go ahead and setup some goals for the platform:</p>
 
@@ -72,7 +72,17 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
   <li>Should present code excercises and real time auto-correction</li>
 </ul>
 
-<p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<p>Let’s start a new project using <code class="highlighter-rouge">anyandgo</code>, that is just another MEAN framework using Express basic and some cool conventions. You’ll need to install <code class="highlighter-rouge">nodejs</code>, <code class="highlighter-rouge">mongodb</code>, <code class="highlighter-rouge">grunt</code> and <code class="highlighter-rouge">anyandgo-cli</code></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span><span class="o">[</span>sudo] npm install -g anyandgo-cli</code></pre></figure>
+
+<p>Once you have it, just create a new project:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>anyandgo init lms</code></pre></figure>
+
+<p>This will create a new folder called <code class="highlighter-rouge">lms</code>, to finish setup just do:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span><span class="nb">cd </span>lms <span class="o">&amp;&amp;</span> npm install <span class="o">&amp;&amp;</span> grunt</code></pre></figure>
 
 <p>Jekyll also offers powerful support for code snippets:</p>
 

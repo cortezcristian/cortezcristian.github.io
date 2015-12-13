@@ -6,14 +6,14 @@
 </description>
     <link>https://cortezcristian.github.io/</link>
     <atom:link href="https://cortezcristian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 13 Dec 2015 16:09:01 -0300</pubDate>
-    <lastBuildDate>Sun, 13 Dec 2015 16:09:01 -0300</lastBuildDate>
+    <pubDate>Sun, 13 Dec 2015 18:55:41 -0300</pubDate>
+    <lastBuildDate>Sun, 13 Dec 2015 18:55:41 -0300</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
         <title>Creating an Interactive E-learning Platform</title>
-        <description>&lt;p&gt;Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn’t be that difficult. 
-Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool like a blog or a cms and the only differentiator should be the quality of the content you generate.&lt;/p&gt;
+        <description>&lt;p&gt;Creating an interactive e-learnig platform like CodeSchool, Codeacademy or Treehouse shouldn’t be that difficult using the MEAN stack. 
+Nowadays LMS platforms are kind of a big bussines, I believe at some point this will be a very common tool like a blog or a cms and the only differentiator would be the quality of the content you generate.&lt;/p&gt;
 
 &lt;p&gt;Let’s go ahead and setup some goals for the platform:&lt;/p&gt;
 
@@ -22,7 +22,17 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
   &lt;li&gt;Should present code excercises and real time auto-correction&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;p&gt;Let’s start a new project using &lt;code class=&quot;highlighter-rouge&quot;&gt;anyandgo&lt;/code&gt;, that is just another MEAN framework using Express basic and some cool conventions. You’ll need to install &lt;code class=&quot;highlighter-rouge&quot;&gt;nodejs&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;mongodb&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;grunt&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;anyandgo-cli&lt;/code&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo] npm install -g anyandgo-cli&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Once you have it, just create a new project:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;anyandgo init lms&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This will create a new folder called &lt;code class=&quot;highlighter-rouge&quot;&gt;lms&lt;/code&gt;, to finish setup just do:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;lms &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; npm install &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; grunt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
 
