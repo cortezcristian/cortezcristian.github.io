@@ -147,7 +147,9 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
 
 <ul>
   <li>Should be able to reproduce videos along with presentations</li>
+  <li>Should trigger automated actions from a timeline of events, changing states between lecturing and evaluating</li>
   <li>Should present code excercises and real time auto-correction</li>
+  <li>Should be able to evaluate unsafe backend code submmitted by the student</li>
 </ul>
 
 <p>And the visual specs:</p>
@@ -172,7 +174,7 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
 
 <p><img src="https://cortezcristian.github.io/assets/lms/starting-with-anyandgo.png" alt="Starting with anyandgo" /></p>
 
-<h2 id="classroom-components">Classroom Components</h2>
+<h2 id="classroom">Classroom</h2>
 
 <p>The classroom is where the student is going to spend most of the time, so it should be flexible and dinamic. We begin defining its components and doing some assumptions:</p>
 
@@ -180,15 +182,26 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
   <li>Video: we can take advantage from YouTUBE API, to host, embed and have a timeline.</li>
   <li>Presentation: we can include some HTML5 slides made with reveal.js</li>
   <li>Code Editor: we can use ace.js which is a very mature editor</li>
+  <li>Notifications: we can show toastr notifications in order to inform the student</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+<p><code class="highlighter-rouge">anyandgo</code> offers support for <code class="highlighter-rouge">jade</code> templates, so inside the <code class="highlighter-rouge">views</code> folder we are going to search for a file called <code class="highlighter-rouge">index.jade</code>, and start modifying it a little bit:</p>
 
-<p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+<figure class="highlight"><pre><code class="language-jade" data-lang="jade">extend layout
+
+block content
+  .row(style="margin-top:80px")
+    .col-sm-4
+      .video-container Video Here
+      .challenge-container Display useful info
+    .col-sm-8
+      .tabs-container
+        .presentation-container HTML5 Presentation
+        .webeditor-container Code Editor
+
+block footer</code></pre></figure>
+
+<p>If you are new to <code class="highlighter-rouge">jade</code> you’ll soon realize that is very simple to write and read, you will also notice that for our responsive skeleton we are using <code class="highlighter-rouge">bootstrap</code> that came pre-installed with <code class="highlighter-rouge">anyandgo</code> default template.</p>
 
 
   </div>

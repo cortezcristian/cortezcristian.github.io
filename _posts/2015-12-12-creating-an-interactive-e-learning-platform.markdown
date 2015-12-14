@@ -13,7 +13,9 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
 Let's go ahead and setup some goals for the platform:
 
 - Should be able to reproduce videos along with presentations
+- Should trigger automated actions from a timeline of events, changing states between lecturing and evaluating
 - Should present code excercises and real time auto-correction
+- Should be able to evaluate unsafe backend code submmitted by the student
 
 And the visual specs:
 
@@ -40,23 +42,34 @@ And we are ready to work!
 
 ![Starting with anyandgo]({{ site.url }}/assets/lms/starting-with-anyandgo.png)
 
-## Classroom Components
+## Classroom
 
 The classroom is where the student is going to spend most of the time, so it should be flexible and dinamic. We begin defining its components and doing some assumptions:
 
 - Video: we can take advantage from YouTUBE API, to host, embed and have a timeline.
 - Presentation: we can include some HTML5 slides made with reveal.js
 - Code Editor: we can use ace.js which is a very mature editor
+- Notifications: we can show toastr notifications in order to inform the student
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+`anyandgo` offers support for `jade` templates, so inside the `views` folder we are going to search for a file called `index.jade`, and start modifying it a little bit:
+
+{% highlight jade %}
+extend layout
+
+block content
+  .row(style="margin-top:80px")
+    .col-sm-4
+      .video-container Video Here
+      .challenge-container Display useful info
+    .col-sm-8
+      .tabs-container
+        .presentation-container HTML5 Presentation
+        .webeditor-container Code Editor
+
+block footer
 {% endhighlight %}
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+If you are new to `jade` you'll soon realize that is very simple to write and read, you will also notice that for our responsive skeleton we are using `bootstrap` that came pre-installed with `anyandgo` default template.
 
 [jekyll-docs]: http://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll

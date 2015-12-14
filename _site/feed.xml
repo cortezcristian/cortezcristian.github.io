@@ -6,8 +6,8 @@
 </description>
     <link>https://cortezcristian.github.io/</link>
     <atom:link href="https://cortezcristian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 14 Dec 2015 09:48:15 -0300</pubDate>
-    <lastBuildDate>Mon, 14 Dec 2015 09:48:15 -0300</lastBuildDate>
+    <pubDate>Mon, 14 Dec 2015 10:25:58 -0300</pubDate>
+    <lastBuildDate>Mon, 14 Dec 2015 10:25:58 -0300</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -19,7 +19,9 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
 
 &lt;ul&gt;
   &lt;li&gt;Should be able to reproduce videos along with presentations&lt;/li&gt;
+  &lt;li&gt;Should trigger automated actions from a timeline of events, changing states between lecturing and evaluating&lt;/li&gt;
   &lt;li&gt;Should present code excercises and real time auto-correction&lt;/li&gt;
+  &lt;li&gt;Should be able to evaluate unsafe backend code submmitted by the student&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;And the visual specs:&lt;/p&gt;
@@ -44,7 +46,7 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
 
 &lt;p&gt;&lt;img src=&quot;https://cortezcristian.github.io/assets/lms/starting-with-anyandgo.png&quot; alt=&quot;Starting with anyandgo&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;classroom-components&quot;&gt;Classroom Components&lt;/h2&gt;
+&lt;h2 id=&quot;classroom&quot;&gt;Classroom&lt;/h2&gt;
 
 &lt;p&gt;The classroom is where the student is going to spend most of the time, so it should be flexible and dinamic. We begin defining its components and doing some assumptions:&lt;/p&gt;
 
@@ -52,15 +54,26 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
   &lt;li&gt;Video: we can take advantage from YouTUBE API, to host, embed and have a timeline.&lt;/li&gt;
   &lt;li&gt;Presentation: we can include some HTML5 slides made with reveal.js&lt;/li&gt;
   &lt;li&gt;Code Editor: we can use ace.js which is a very mature editor&lt;/li&gt;
+  &lt;li&gt;Notifications: we can show toastr notifications in order to inform the student&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;anyandgo&lt;/code&gt; offers support for &lt;code class=&quot;highlighter-rouge&quot;&gt;jade&lt;/code&gt; templates, so inside the &lt;code class=&quot;highlighter-rouge&quot;&gt;views&lt;/code&gt; folder we are going to search for a file called &lt;code class=&quot;highlighter-rouge&quot;&gt;index.jade&lt;/code&gt;, and start modifying it a little bit:&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-jade&quot; data-lang=&quot;jade&quot;&gt;extend layout
+
+block content
+  .row(style=&quot;margin-top:80px&quot;)
+    .col-sm-4
+      .video-container Video Here
+      .challenge-container Display useful info
+    .col-sm-8
+      .tabs-container
+        .presentation-container HTML5 Presentation
+        .webeditor-container Code Editor
+
+block footer&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;If you are new to &lt;code class=&quot;highlighter-rouge&quot;&gt;jade&lt;/code&gt; you’ll soon realize that is very simple to write and read, you will also notice that for our responsive skeleton we are using &lt;code class=&quot;highlighter-rouge&quot;&gt;bootstrap&lt;/code&gt; that came pre-installed with &lt;code class=&quot;highlighter-rouge&quot;&gt;anyandgo&lt;/code&gt; default template.&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 12 Dec 2015 23:01:44 -0300</pubDate>
