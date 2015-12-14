@@ -203,6 +203,20 @@ block footer</code></pre></figure>
 
 <p>If you are new to <code class="highlighter-rouge">jade</code> you’ll soon realize that is very simple to write and read, you will also notice that for our responsive skeleton we are using <code class="highlighter-rouge">bootstrap</code> that came pre-installed with <code class="highlighter-rouge">anyandgo</code> default template.</p>
 
+<p>Ok, now let’s go shopping and search some components <a href="http://bower.io/search/">bower.io/search</a></p>
+
+<ul>
+  <li><a href="https://github.com/brandly/angular-youtube-embed">angular-youtube-mb</a> utility to manage YouTUBE API and embed videos</li>
+  <li><a href="https://github.com/angular-ui/ui-ace">angular-ui-ace</a> this directive allows you to add ACE editor elements</li>
+  <li><a href="https://github.com/cortezcristian/jbrowser">jbrowser</a> it will help us to embed the HTML5 presentation</li>
+</ul>
+
+<p>Let’s install the modules and include their dependencies, in our root folder <code class="highlighter-rouge">./lms</code>:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>bower install --save angular-youtube-mb angular-ui-ace jbrowser
+<span class="gp">$ </span>grunt wiredep:site</code></pre></figure>
+
+<p>In that way we download and add all dependencies. In case some bower is unable to find a suitable version for angular, just choose <code class="highlighter-rouge">6) angular#* </code> and enter <code class="highlighter-rouge">6!</code> to persist.</p>
 
   </div>
 

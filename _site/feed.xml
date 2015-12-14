@@ -6,8 +6,8 @@
 </description>
     <link>https://cortezcristian.github.io/</link>
     <atom:link href="https://cortezcristian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 14 Dec 2015 10:25:58 -0300</pubDate>
-    <lastBuildDate>Mon, 14 Dec 2015 10:25:58 -0300</lastBuildDate>
+    <pubDate>Mon, 14 Dec 2015 12:05:36 -0300</pubDate>
+    <lastBuildDate>Mon, 14 Dec 2015 12:05:36 -0300</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -75,6 +75,20 @@ block footer&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;If you are new to &lt;code class=&quot;highlighter-rouge&quot;&gt;jade&lt;/code&gt; you’ll soon realize that is very simple to write and read, you will also notice that for our responsive skeleton we are using &lt;code class=&quot;highlighter-rouge&quot;&gt;bootstrap&lt;/code&gt; that came pre-installed with &lt;code class=&quot;highlighter-rouge&quot;&gt;anyandgo&lt;/code&gt; default template.&lt;/p&gt;
 
+&lt;p&gt;Ok, now let’s go shopping and search some components &lt;a href=&quot;http://bower.io/search/&quot;&gt;bower.io/search&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/brandly/angular-youtube-embed&quot;&gt;angular-youtube-mb&lt;/a&gt; utility to manage YouTUBE API and embed videos&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/angular-ui/ui-ace&quot;&gt;angular-ui-ace&lt;/a&gt; this directive allows you to add ACE editor elements&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/cortezcristian/jbrowser&quot;&gt;jbrowser&lt;/a&gt; it will help us to embed the HTML5 presentation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let’s install the modules and include their dependencies, in our root folder &lt;code class=&quot;highlighter-rouge&quot;&gt;./lms&lt;/code&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;bower install --save angular-youtube-mb angular-ui-ace jbrowser
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;grunt wiredep:site&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In that way we download and add all dependencies. In case some bower is unable to find a suitable version for angular, just choose &lt;code class=&quot;highlighter-rouge&quot;&gt;6) angular#* &lt;/code&gt; and enter &lt;code class=&quot;highlighter-rouge&quot;&gt;6!&lt;/code&gt; to persist.&lt;/p&gt;
 </description>
         <pubDate>Sat, 12 Dec 2015 23:01:44 -0300</pubDate>
         <link>https://cortezcristian.github.io/update/elearning/2015/12/12/creating-an-interactive-e-learning-platform.html</link>

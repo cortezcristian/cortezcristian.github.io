@@ -71,6 +71,17 @@ block footer
 
 If you are new to `jade` you'll soon realize that is very simple to write and read, you will also notice that for our responsive skeleton we are using `bootstrap` that came pre-installed with `anyandgo` default template.
 
-[jekyll-docs]: http://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+Ok, now let's go shopping and search some components [bower.io/search](http://bower.io/search/)
+
+- [angular-youtube-mb](https://github.com/brandly/angular-youtube-embed) utility to manage YouTUBE API and embed videos
+- [angular-ui-ace](https://github.com/angular-ui/ui-ace) this directive allows you to add ACE editor elements
+- [jbrowser](https://github.com/cortezcristian/jbrowser) it will help us to embed the HTML5 presentation
+
+Let's install the modules and include their dependencies, in our root folder `./lms`:
+
+{% highlight bash %}
+$ bower install --save angular-youtube-mb angular-ui-ace jbrowser
+$ grunt wiredep:site
+{% endhighlight %}
+
+In that way we download and add all dependencies. In case some bower is unable to find a suitable version for angular, just choose `6) angular#* ` and enter `6!` to persist.
