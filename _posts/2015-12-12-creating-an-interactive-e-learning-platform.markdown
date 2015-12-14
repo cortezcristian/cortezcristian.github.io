@@ -2,7 +2,7 @@
 layout: post
 title:  "Creating an interactive E-learning Platform"
 date:   2015-12-12 23:01:44 -0300
-categories: jekyll update elearning
+categories: update elearning
 description: Learn how to create an interactive e-learnig Codeschool-like platform 
 comments: true
 ---
