@@ -26,3 +26,8 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# jekyll
+_site/bower.json
+_site/update/
+.sass-cache/

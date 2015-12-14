@@ -6,8 +6,8 @@
 </description>
     <link>https://cortezcristian.github.io/</link>
     <atom:link href="https://cortezcristian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 13 Dec 2015 23:24:53 -0300</pubDate>
-    <lastBuildDate>Sun, 13 Dec 2015 23:24:53 -0300</lastBuildDate>
+    <pubDate>Mon, 14 Dec 2015 09:44:34 -0300</pubDate>
+    <lastBuildDate>Mon, 14 Dec 2015 09:44:34 -0300</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -26,6 +26,8 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
 
 &lt;p&gt;&lt;img src=&quot;https://cortezcristian.github.io/assets/lms/lms-mockup.png&quot; alt=&quot;LMS&quot; /&gt;&lt;/p&gt;
 
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;/h2&gt;
+
 &lt;p&gt;Let’s start a new project using &lt;code class=&quot;highlighter-rouge&quot;&gt;anyandgo&lt;/code&gt;, that is just another MEAN framework using Express basic and some cool conventions. You’ll need to install &lt;code class=&quot;highlighter-rouge&quot;&gt;nodejs&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;mongodb&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;grunt&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;anyandgo-cli&lt;/code&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;sudo] npm install -g anyandgo-cli&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -38,7 +40,19 @@ Nowadays LMS platforms are kind of a big bussines, I believe at some point this 
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;lms &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; npm install &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; grunt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;And we are ready to work!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cortezcristian.github.io/assets/lms/starting-with-anyandgo.png&quot; alt=&quot;Starting with anyandgo&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;classroom-components&quot;&gt;Classroom Components&lt;/h2&gt;
+
+&lt;p&gt;The classroom is where the student is going to spend most of the time, so it should be flexible and dinamic. We begin defining its components and doing some assumptions:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Video: we can take advantage from YouTUBE API, to host, embed and have a timeline.&lt;/li&gt;
+  &lt;li&gt;Presentation: we can include some HTML5 slides made with reveal.js&lt;/li&gt;
+  &lt;li&gt;Code Editor: we can use ace.js which is a very mature editor&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;

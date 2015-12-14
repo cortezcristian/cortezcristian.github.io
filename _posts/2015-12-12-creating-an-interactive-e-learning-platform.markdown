@@ -19,6 +19,8 @@ And the visual specs:
 
 ![LMS]({{ site.url }}/assets/lms/lms-mockup.png)
 
+## Setup
+
 Let's start a new project using `anyandgo`, that is just another MEAN framework using Express basic and some cool conventions. You'll need to install `nodejs`, `mongodb`, `grunt` and `anyandgo-cli`
 {% highlight bash %}
 $ [sudo] npm install -g anyandgo-cli
@@ -34,9 +36,17 @@ This will create a new folder called `lms`, to finish setup just do:
 $ cd lms && npm install && grunt
 {% endhighlight %}
 
+And we are ready to work!
 
+![Starting with anyandgo]({{ site.url }}/assets/lms/starting-with-anyandgo.png)
 
-Jekyll also offers powerful support for code snippets:
+## Classroom Components
+
+The classroom is where the student is going to spend most of the time, so it should be flexible and dinamic. We begin defining its components and doing some assumptions:
+
+- Video: we can take advantage from YouTUBE API, to host, embed and have a timeline.
+- Presentation: we can include some HTML5 slides made with reveal.js
+- Code Editor: we can use ace.js which is a very mature editor
 
 {% highlight ruby %}
 def print_hi(name)
