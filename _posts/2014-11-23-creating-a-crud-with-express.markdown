@@ -636,9 +636,8 @@ If we go ahead and create a new person, when you get redirected back to `/list` 
 ## Final
 If you want to see the complete demo, you can go ahead and clone this repo.
 
-- Express 4.x CRUD
-{% include icon-github.html username="cortezcristian" %} /
-[anyandgo](https://github.com/cortezcristian/express4crud)
+- {% include icon-github.html username="cortezcristian" %} /
+[express4crud](https://github.com/cortezcristian/express4crud)
 
 ```
 $ git clone git@github.com:cortezcristian/express4crud.git
