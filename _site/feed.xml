@@ -6,8 +6,8 @@
 </description>
     <link>https://cortezcristian.github.io/</link>
     <atom:link href="https://cortezcristian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 06 Aug 2016 13:44:04 -0300</pubDate>
-    <lastBuildDate>Sat, 06 Aug 2016 13:44:04 -0300</lastBuildDate>
+    <pubDate>Sat, 06 Aug 2016 13:47:07 -0300</pubDate>
+    <lastBuildDate>Sat, 06 Aug 2016 13:47:07 -0300</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -185,27 +185,28 @@ block footer&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;So we have the basic model, let’s create a basic test &lt;code class=&quot;highlighter-rouge&quot;&gt;test/admins-test.js&lt;/code&gt;:
-```javascript
-var Admin = require(‘../models/admins’);
-var mongoose = require(‘mongoose’);&lt;/p&gt;
+&lt;p&gt;So we have the basic model, let’s create a basic test &lt;code class=&quot;highlighter-rouge&quot;&gt;test/admins-test.js&lt;/code&gt;:&lt;/p&gt;
 
-&lt;p&gt;mongoose.connect(‘mongodb://localhost/crudtest’);&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Admin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'../models/admins'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mongoose'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-&lt;p&gt;var a = new Admin({ email:”admin@admin.com”, password: “123456” });
-a.save(function(err, doc){
-    console.log(err, doc);
-});&lt;/p&gt;
+&lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mongodb://localhost/crudtest'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-If we run this, we'll create an admin.
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Admin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;admin@admin.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;123456&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 
-```bash
-$ node test/admins-test.js
-null { __v: 0,
-  email: 'admin@admin.com',
-  password: '123456',
-  _id: 546fe06f0aff37711bb5a517 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If we run this, we’ll create an admin.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;node &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;/admins-test.js
+null &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; __v: 0,
+  email: &lt;span class=&quot;s1&quot;&gt;'admin@admin.com'&lt;/span&gt;,
+  password: &lt;span class=&quot;s1&quot;&gt;'123456'&lt;/span&gt;,
+  _id: 546fe06f0aff37711bb5a517 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;

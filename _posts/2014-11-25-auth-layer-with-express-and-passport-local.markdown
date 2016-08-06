@@ -57,6 +57,7 @@ module.exports = adminModel;
 ```
 
 So we have the basic model, let's create a basic test `test/admins-test.js`:
+
 ```javascript
 var Admin = require('../models/admins');
 var mongoose = require('mongoose');

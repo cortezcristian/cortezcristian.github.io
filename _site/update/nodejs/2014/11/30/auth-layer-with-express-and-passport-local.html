@@ -224,27 +224,28 @@
 </code></pre>
 </div>
 
-<p>So we have the basic model, let’s create a basic test <code class="highlighter-rouge">test/admins-test.js</code>:
-```javascript
-var Admin = require(‘../models/admins’);
-var mongoose = require(‘mongoose’);</p>
+<p>So we have the basic model, let’s create a basic test <code class="highlighter-rouge">test/admins-test.js</code>:</p>
 
-<p>mongoose.connect(‘mongodb://localhost/crudtest’);</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Admin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
 
-<p>var a = new Admin({ email:”admin@admin.com”, password: “123456” });
-a.save(function(err, doc){
-    console.log(err, doc);
-});</p>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'mongodb://localhost/crudtest'</span><span class="p">);</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
-If we run this, we'll create an admin.
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Admin</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span><span class="s2">"admin@admin.com"</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"123456"</span> <span class="p">});</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">);</span>
+<span class="p">});</span>
 
-```bash
-$ node test/admins-test.js
-null { __v: 0,
-  email: 'admin@admin.com',
-  password: '123456',
-  _id: 546fe06f0aff37711bb5a517 }
+</code></pre>
+</div>
+
+<p>If we run this, we’ll create an admin.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>node <span class="nb">test</span>/admins-test.js
+null <span class="o">{</span> __v: 0,
+  email: <span class="s1">'admin@admin.com'</span>,
+  password: <span class="s1">'123456'</span>,
+  _id: 546fe06f0aff37711bb5a517 <span class="o">}</span>
 
 </code></pre>
 </div>
