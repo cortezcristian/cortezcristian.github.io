@@ -162,6 +162,40 @@
     }
 }
 
+/**
+ * Tables
+ */
+
+.post-content table {
+		border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    width: 100%;
+    overflow: auto;
+		margin-bottom: 10px;
+    word-break: normal;
+    word-break: keep-all
+}
+
+.post-content table th {
+    font-weight: bold
+}
+
+.post-content table th,.post-content table td {
+    padding: 6px 13px;
+    border: 1px solid #ddd
+}
+
+.post-content table tr {
+    background-color: #fff;
+    border-top: 1px solid #ccc
+}
+
+.post-content table tr:nth-child(2n) {
+    background-color: #f8f8f8
+}
+
+
 
 
 /**
@@ -213,6 +247,7 @@
     font-size: 40px;
     letter-spacing: -1px;
     line-height: 1;
+    font-weight: 200;
 
     @include media-query($on-laptop) {
         font-size: 36px;

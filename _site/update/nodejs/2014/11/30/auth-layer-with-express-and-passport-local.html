@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Auth Layer with Express and Passport Local</title>
+  <meta name="description" content="Express 4.x and Passport Auth Layer">
+
+  <!-- facebook OG tags -->
+<meta content="1037408686315344" property="fb:app_id">
+<meta content="Cristian Cortez" property="og:site_name">
+
+  <meta content="Auth Layer with Express and Passport Local" property="og:title">
+
+
+  <meta content="article" property="og:type">
+
+
+  <meta content="Learn how to create a Passport Auth Layer with Express 4.x" property="og:description">
+
+
+  <meta content="https://cortezcristian.github.io/update/nodejs/2014/11/30/auth-layer-with-express-and-passport-local.html" property="og:url">
+
+
+  <meta content="2014-11-30T23:01:44-03:00" property="article:published_time">
+  <meta content="https://cortezcristian.github.io/about/" property="article:author">
+
+
+  <meta content="https://cortezcristian.github.io/assets/img/cortezcristian.jpg" property="og:image">
+
+
+  
+  <!-- <meta content="update" property="article:section"> -->
+  
+
+
+  
+
+
+<!-- Twitter cards metatags -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@cortezcristian">
+<meta name="twitter:creator" content="@cortezcristian">
+
+  <meta name="twitter:title" content="Auth Layer with Express and Passport Local">
+
+
+  <meta name="twitter:url" content="https://cortezcristian.github.io/update/nodejs/2014/11/30/auth-layer-with-express-and-passport-local.html">
+
+
+  <meta name="twitter:description" content="Learn how to create a Passport Auth Layer with Express 4.x">
+
+
+
+
+  <!-- bower:css -->
+  <link rel="stylesheet" href="https://cortezcristian.github.io/bower_components/components-font-awesome/css/font-awesome.css" />
+  <!-- endbower -->
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://cortezcristian.github.io/update/nodejs/2014/11/30/auth-layer-with-express-and-passport-local.html">
+  <link rel="alternate" type="application/rss+xml" title="Cristian Cortez" href="https://cortezcristian.github.io/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Cristian Cortez</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <div class="container">
+    <div class="row ">
+        <div class="col-xs-8 col-xs-offset-2">
+
+        <!-- Twitter -->
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="cortezcristian">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+        <!-- Google + -->
+        <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <!-- Facebook -->
+        <div class="fb-share-button" data-href="https://cortezcristian.github.io/update/nodejs/2014/11/30/auth-layer-with-express-and-passport-local.html" data-layout="button_count" style="position: relative; top: -8px; left: 33px;"></div>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=1037408686315344";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    </div>
+    </div>
+</div>
+
+    <h1 class="post-title" itemprop="name headline">Auth Layer with Express and Passport Local</h1>
+    <p class="post-meta"><time datetime="2014-11-30T23:01:44-03:00" itemprop="datePublished">Nov 30, 2014</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="express-4x-and-passport-auth-layer">Express 4.x and Passport Auth Layer</h1>
+
+<p>We are assuming that you already completed the <a href="https://github.com/cortezcristian/express4crud">CRUD tutorial</a>. The main application has this urls:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">URL</th>
+      <th style="text-align: center">Method</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">/list</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: left">List all persons</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/p/new</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: left">Displays creation form</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/p/new</td>
+      <td style="text-align: center">POST</td>
+      <td style="text-align: left">Handles persons creation</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/p/delete/:id</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: left">Delete records</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/p/edit/:id</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: left">Display edit form</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/p/edit/:id</td>
+      <td style="text-align: center">POST</td>
+      <td style="text-align: left">Edit persons information</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now we want to add a local authentication layer to protect the listed urls. We are creating an administrator role, that’ll access the private urls via login in a new url called <code class="highlighter-rouge">/login</code>. Let’s enumerate a list of tasks we do need to accomplish for this to happen:</p>
+
+<ol>
+  <li>Create Admin model. (Model: <code class="highlighter-rouge">./models/admin.js</code>)</li>
+  <li>Add an admin fixture, to be preloaded when server starts. (Credentials: admin@admin.com:123456)</li>
+  <li>Create <code class="highlighter-rouge">/login</code> route. (Route: <code class="highlighter-rouge">./routes/main.js</code>)</li>
+  <li>Create a login form. (View: <code class="highlighter-rouge">./views/login.jade</code>)</li>
+  <li>Create Passport Local Strategy</li>
+  <li>Handle login form via POST to <code class="highlighter-rouge">/login</code>. (Route: <code class="highlighter-rouge">./routes/main.js</code>)</li>
+  <li>Use Local Strategy</li>
+  <li>Securitize CRUD routes (Route: <code class="highlighter-rouge">./routes/main.js</code>)</li>
+  <li>Create Logout route (Route: <code class="highlighter-rouge">./routes/main.js</code>)</li>
+  <li>Destroy Session Data</li>
+  <li>Add Sign-off button into the layout</li>
+</ol>
+
+<p><img src="https://raw.githubusercontent.com/cortezcristian/express4passport-local/master/pics/auth-layer-passport-local.png" alt="Task Graph" /></p>
+
+<h2 id="create-admin-model">Create Admin Model</h2>
+
+<p>Let’s create a basic model <code class="highlighter-rouge">./models/admins.js</code> with basic credentials fields like so:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Schema</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">adminSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+    <span class="na">email</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="na">password</span><span class="p">:</span> <span class="nb">String</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">adminModel</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Admins'</span><span class="p">,</span> <span class="nx">adminSchema</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">adminModel</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>So we have the basic model, let’s create a basic test <code class="highlighter-rouge">test/admins-test.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Admin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'mongodb://localhost/crudtest'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Admin</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span><span class="s2">"admin@admin.com"</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"123456"</span> <span class="p">});</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre>
+</div>
+
+<p>If we run this, we’ll create an admin.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>node <span class="nb">test</span>/admins-test.js
+null <span class="o">{</span> __v: 0,
+  email: <span class="s1">'admin@admin.com'</span>,
+  password: <span class="s1">'123456'</span>,
+  _id: 546fe06f0aff37711bb5a517 <span class="o">}</span>
+
+</code></pre>
+</div>
+
+<p>Something is really bad here. Did you noticed? We are storing a plain password, that’s not good let’s improve our model a little bit:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Schema</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">;</span>
+<span class="o">+</span><span class="kd">var</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">adminSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+    <span class="na">email</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="na">password</span><span class="p">:</span> <span class="nb">String</span>
+<span class="p">});</span>
+
+<span class="o">+</span><span class="cm">/**
++ * Pre-Save Hook
++ * http://mongoosejs.com/docs/api.html#schema_Schema-pre
++ */</span>
+<span class="o">+</span>
+<span class="o">+</span><span class="nx">adminSchema</span><span class="p">.</span><span class="nx">pre</span><span class="p">(</span><span class="s2">"save"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">+</span>    <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isModified</span><span class="p">(</span><span class="s1">'password'</span><span class="p">))</span>
+<span class="o">+</span>        <span class="k">this</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="s1">'md5'</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">password</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">);</span>
+<span class="o">+</span>    <span class="nx">next</span><span class="p">();</span>
+<span class="o">+</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">adminModel</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Admins'</span><span class="p">,</span> <span class="nx">adminSchema</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">adminModel</span><span class="p">;</span>
+</code></pre>
+</div>
+<p>We just added the <a href="http://nodejs.org/api/crypto.html">crypto module</a> to use the MD5 hash creation method, we are also adding functionallity to add a <a href="http://mongoosejs.com/docs/api.html#schema_Schema-pre">pre-save hook</a> to our schema definition.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>node <span class="nb">test</span>/admins-test.js
+null <span class="o">{</span> __v: 0,
+  email: <span class="s1">'admin@admin.com'</span>,
+  password: <span class="s1">'e10adc3949ba59abbe56e057f20f883e'</span>,
+  _id: 546fed1f3561b0641e4eb34b <span class="o">}</span>
+</code></pre>
+</div>
+
+<p>As we can see now if password is modified we automatically turn that into a MD5 hash. Let’s create and authentication method so each admin can test passwords.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Schema</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">adminSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+    <span class="na">email</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="na">password</span><span class="p">:</span> <span class="nb">String</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * Pre-Save Hook
+ * http://mongoosejs.com/docs/api.html#schema_Schema-pre
+ */</span>
+
+<span class="nx">adminSchema</span><span class="p">.</span><span class="nx">pre</span><span class="p">(</span><span class="s2">"save"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isModified</span><span class="p">(</span><span class="s1">'password'</span><span class="p">))</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="s1">'md5'</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">password</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">);</span>
+    <span class="nx">next</span><span class="p">();</span>
+<span class="p">});</span>
+<span class="o">+</span>
+<span class="o">+</span><span class="nx">adminSchema</span><span class="p">.</span><span class="nx">method</span><span class="p">(</span><span class="s1">'authenticate'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">password</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">+</span>    <span class="k">return</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="s1">'md5'</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">password</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">)</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
+<span class="o">+</span><span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">adminModel</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Admins'</span><span class="p">,</span> <span class="nx">adminSchema</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">adminModel</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>And we can test it by modifying our test <code class="highlighter-rouge">./test/admins-test.js</code>.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Admin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'mongodb://localhost/crudtest'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Admin</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span><span class="s2">"admin@admin.com"</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="s2">"123456"</span> <span class="p">});</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">);</span>
+<span class="o">+</span>
+<span class="o">+</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"PasswordOK"</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s2">"123456"</span><span class="p">));</span>
+<span class="o">+</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"PasswordFAIL"</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s2">"incorrect"</span><span class="p">));</span>
+<span class="p">});</span>
+
+</code></pre>
+</div>
+
+<p>We can test again our method to see if it works:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>node <span class="nb">test</span>/admins-test.js
+null <span class="o">{</span> __v: 0,
+  email: <span class="s1">'admin@admin.com'</span>,
+  password: <span class="s1">'e10adc3949ba59abbe56e057f20f883e'</span>,
+  _id: 546ff176b6c3be1a20c3a734 <span class="o">}</span>
+PasswordOK <span class="nb">true
+</span>PasswordFAIL <span class="nb">false</span>
+</code></pre>
+</div>
+
+<p>That’s it! we have our admin model ready.</p>
+
+<h2 id="adding-fixtures">Adding Fixtures</h2>
+
+<p>Fixtures a data-sets we store in our programming language and sync them with the DB when necessary. They are important specially when running tests, or if you don’t want to show your webapp empty. In this example, we are going to use <a href="https://github.com/powmedia/mongoose-fixtures">mongoose-fixtures</a> to pre-load persons and admins everytime we start the server.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>npm install --save mongoose-fixtures
+</code></pre>
+</div>
+
+<p>Let’s create a folder to store our fixtures.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mkdir fixtures
+</code></pre>
+</div>
+
+<p>Let’s create a file to store persons personal data <code class="highlighter-rouge">fixtures/persons.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">exports</span><span class="p">.</span><span class="nx">Persons</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Cristian'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">27</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Maria'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">22</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Ignacio'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">32</span> <span class="p">}</span>
+<span class="p">];</span>
+</code></pre>
+</div>
+
+<p>We do need to add the new package into our <code class="highlighter-rouge">app.js</code></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">favicon</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'serve-favicon'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'morgan'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'cookie-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express-session'</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">flash</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'connect-flash'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">routes</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./routes/index'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./routes/user'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+<span class="o">+</span><span class="kd">var</span> <span class="nx">fixtures</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose-fixtures'</span><span class="p">);</span>
+
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'mongodb://localhost/crudtest'</span><span class="p">);</span>
+<span class="o">+</span>
+<span class="o">+</span><span class="nx">fixtures</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">'./fixtures/persons.js'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="p">....</span>
+</code></pre>
+</div>
+
+<p>If we run the server again:
+<code class="highlighter-rouge">bash
+$ npm start
+</code></p>
+
+<p>And go to <a href="http://localhost:3000/list">http://localhost:3000/list</a>:</p>
+
+<p><img src="https://raw.githubusercontent.com/cortezcristian/express4passport-local/master/pics/fixtures-list.png" alt="Fixtures List" /></p>
+
+<p>As you can see persons fixtures have been preloaded, also notice that everytime you restart the server mongoose-fixtures will empty your collections and fill them with specified datasets. Try adding and/or removing and restarting the server.</p>
+
+<p>Let’s do the same with the admins so we can have at least one administrator available to do our implementation. Add <code class="highlighter-rouge">fixtures/admins.js</code> file:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">exports</span><span class="p">.</span><span class="nx">Admins</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="na">email</span><span class="p">:</span> <span class="s1">'admin@admin.com'</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="s1">'123456'</span> <span class="p">}</span>
+<span class="p">];</span>
+
+</code></pre>
+</div>
+
+<p>And do the following changes into <code class="highlighter-rouge">app.js</code></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">favicon</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'serve-favicon'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'morgan'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'cookie-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express-session'</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">flash</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'connect-flash'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">routes</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./routes/index'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./routes/user'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fixtures</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose-fixtures'</span><span class="p">);</span>
+
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'mongodb://localhost/crudtest'</span><span class="p">);</span>
+
+<span class="o">+</span><span class="nx">fixtures</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">'./fixtures/admins.js'</span><span class="p">);</span>
+<span class="nx">fixtures</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">'./fixtures/persons.js'</span><span class="p">);</span>
+
+</code></pre>
+</div>
+
+<p>Include the model inside <code class="highlighter-rouge">./routes/main.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">Persons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/persons.js'</span><span class="p">);</span>
+<span class="o">+</span><span class="kd">var</span> <span class="nx">Admins</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins.js'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/list'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">'message'</span><span class="p">);</span>
+    <span class="nx">Persons</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">docs</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'list'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'List'</span><span class="p">,</span> <span class="na">persons</span><span class="p">:</span> <span class="nx">docs</span><span class="p">,</span> <span class="na">flashmsg</span><span class="p">:</span> <span class="nx">msg</span><span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+<span class="p">.....</span>
+</code></pre>
+</div>
+
+<p>Congrats! We succesfully added fixtures into our app.</p>
+
+<h2 id="login-form">Login Form</h2>
+
+<p>Let’s create our login form.</p>
+
+<p><img src="https://raw.githubusercontent.com/cortezcristian/express4passport-local/master/pics/login-form.png" alt="Login Form" /></p>
+
+<p>To begin, we need to add the <code class="highlighter-rouge">/login</code> route, into our <code class="highlighter-rouge">./routes/main.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">Persons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/persons.js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Admins</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins.js'</span><span class="p">);</span>
+
+<span class="o">+</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+<span class="o">+</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'login'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'Login'</span><span class="p">});</span>
+<span class="o">+</span><span class="p">});</span>
+<span class="o">+</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/list'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">'message'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Secondlly, we do create the view file <code class="highlighter-rouge">./views/login.jade</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">extends</span> <span class="nx">layout</span>
+
+<span class="nx">block</span> <span class="nx">content</span>
+  <span class="nx">h1</span><span class="o">=</span> <span class="nx">title</span>
+  <span class="nx">form</span><span class="p">(</span><span class="nx">action</span><span class="o">=</span><span class="s1">'/login'</span><span class="p">,</span><span class="nx">method</span><span class="o">=</span><span class="s1">'post'</span><span class="p">)</span>
+    <span class="nx">div</span>
+      <span class="nx">label</span><span class="p">(</span><span class="k">for</span><span class="o">=</span><span class="s1">'email'</span><span class="p">)</span> <span class="nx">E</span><span class="o">-</span><span class="nx">mail</span><span class="err">:</span>
+      <span class="nx">input</span><span class="p">(</span><span class="nx">type</span><span class="o">=</span><span class="s1">'text'</span><span class="p">,</span> <span class="nx">name</span><span class="o">=</span><span class="s1">'email'</span><span class="p">,</span> <span class="nx">id</span><span class="o">=</span><span class="s1">'email'</span><span class="p">,</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s1">'E-mail here...'</span><span class="p">)</span>
+    <span class="nx">div</span>
+      <span class="nx">label</span><span class="p">(</span><span class="k">for</span><span class="o">=</span><span class="s1">'password'</span><span class="p">)</span> <span class="nx">Pasword</span><span class="err">:</span>
+      <span class="nx">input</span><span class="p">(</span><span class="nx">type</span><span class="o">=</span><span class="s1">'password'</span><span class="p">,</span> <span class="nx">name</span><span class="o">=</span><span class="s1">'password'</span><span class="p">,</span> <span class="nx">id</span><span class="o">=</span><span class="s1">'password'</span><span class="p">,</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s1">'Password...'</span><span class="p">)</span>
+    <span class="nx">div</span>
+      <span class="nx">input</span><span class="p">(</span><span class="nx">type</span><span class="o">=</span><span class="s1">'submit'</span><span class="p">,</span> <span class="nx">value</span><span class="o">=</span><span class="s1">'Login'</span><span class="p">)</span>
+  <span class="nx">style</span><span class="p">.</span>
+    <span class="nx">form</span> <span class="nx">label</span> <span class="p">{</span> <span class="nx">min</span><span class="o">-</span><span class="nx">width</span><span class="err">:</span> <span class="mi">80</span><span class="nx">px</span><span class="p">;</span> <span class="nl">display</span><span class="p">:</span> <span class="nx">inline</span><span class="o">-</span><span class="nx">block</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nx">form</span> <span class="o">&gt;</span> <span class="nx">div</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="mi">5</span><span class="nx">px</span><span class="p">;</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Finally we do set the POST url <code class="highlighter-rouge">/login</code> to receive the login form data, for now we add just a mock to catch and display data received. So we do add the following into <code class="highlighter-rouge">./routes/main.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">Persons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/persons.js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Admins</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins.js'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'login'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'Login'</span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="o">+</span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+<span class="o">+</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="o">+</span><span class="p">});</span>
+<span class="o">+</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/list'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">'message'</span><span class="p">);</span>
+    <span class="nx">Persons</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">docs</span><span class="p">){</span>
+</code></pre>
+</div>
+
+<p>To test all that you can simply go to <a href="http://localhost:3000/login">http://localhost:3000/login</a>, and by submitting data you should be able to get the data inserted back. Don’t you worry, just go ahead with next step we’ll get back to this POST url later.</p>
+
+<p><img src="https://raw.githubusercontent.com/cortezcristian/express4passport-local/master/pics/login-form-json.png" alt="Post Login JSON" /></p>
+
+<h2 id="passport">Passport</h2>
+
+<p>Passport is authentication middleware for Node.js, that works really well with Express, see <a href="http://passportjs.org/">http://passportjs.org/</a>. Passport let you define strategies, for this project we’ll need Passport core, and passport-local package. So let’s install them:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>npm install --save passport passport-local
+</code></pre>
+</div>
+
+<p>Let’s move on linking passport to our express webapp, in the <code class="highlighter-rouge">app.js</code> head we require passport:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">favicon</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'serve-favicon'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'morgan'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'cookie-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express-session'</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">flash</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'connect-flash'</span><span class="p">);</span>
+<span class="o">+</span><span class="kd">var</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'passport'</span><span class="p">);</span>
+
+</code></pre>
+</div>
+
+<p>And then around line 33, we include the following:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span>
+ <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cookieParser</span><span class="p">());</span>
+ <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'public'</span><span class="p">)));</span>
+ <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">session</span><span class="p">({</span><span class="na">secret</span><span class="p">:</span> <span class="s1">'supersecret'</span><span class="p">,</span> <span class="na">saveUninitialized</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">resave</span><span class="p">:</span> <span class="kc">true</span><span class="p">}));</span>
+<span class="o">+</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">initialize</span><span class="p">());</span>
+<span class="o">+</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">session</span><span class="p">());</span>
+ <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">flash</span><span class="p">());</span>
+
+<span class="o">+</span><span class="nx">require</span><span class="p">(</span><span class="s1">'./auth/local-strategy.js'</span><span class="p">);</span>
+<span class="o">+</span>
+
+</code></pre>
+</div>
+
+<p>In that way we let express now we are using passport, notice we are also linking a file with the Local Strategy definition.</p>
+
+<p>Let’s create a folder called <code class="highlighter-rouge">auth</code>:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mkdir auth
+</code></pre>
+</div>
+
+<p>And create a file to store our local passport strategy, call it <code class="highlighter-rouge">./auth/local-strategy.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">passport</span><span class="p">,</span>
+  <span class="nx">LocalStrategy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'passport-local'</span><span class="p">).</span><span class="nx">Strategy</span><span class="p">,</span>
+  <span class="nx">Admins</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins.js'</span><span class="p">);</span>
+
+<span class="nx">passport</span><span class="p">.</span><span class="nx">serializeUser</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">passport</span><span class="p">.</span><span class="nx">deserializeUser</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">'AdminLogin'</span><span class="p">,</span> <span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="na">usernameField</span><span class="p">:</span> <span class="s1">'email'</span><span class="p">,</span>
+    <span class="na">passwordField</span><span class="p">:</span> <span class="s1">'password'</span>
+  <span class="p">},</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Admins</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span><span class="nx">username</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">adm</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">adm</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'Incorrect username.'</span> <span class="p">});</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">adm</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="nx">password</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'Incorrect password.'</span> <span class="p">});</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">adm</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">));</span>
+</code></pre>
+</div>
+
+<p>That’s it! Our strategy is alredy defined! It’s time for us to use it, just by changing the <code class="highlighter-rouge">/login</code> POST route definition in <code class="highlighter-rouge">./routes/main.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+<span class="o">+</span><span class="kd">var</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">passport</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">Persons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/persons.js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Admins</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins.js'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'login'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'Login'</span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="o">+</span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s1">'AdminLogin'</span><span class="p">,</span>
+<span class="o">+</span>    <span class="p">{</span> <span class="na">successRedirect</span><span class="p">:</span> <span class="s1">'/list'</span><span class="p">,</span>
+<span class="o">+</span>      <span class="na">failureRedirect</span><span class="p">:</span> <span class="s1">'/login'</span><span class="p">,</span>
+<span class="o">+</span>      <span class="na">failureFlash</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/list'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">'message'</span><span class="p">);</span>
+    <span class="nx">Persons</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">docs</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'list'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'List'</span><span class="p">,</span> <span class="na">persons</span><span class="p">:</span> <span class="nx">docs</span><span class="p">,</span> <span class="na">flashmsg</span><span class="p">:</span> <span class="nx">msg</span><span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>That’s how we are informing the route which strategy we are going to use and what should we do in case of success and failure. Now restart the server and go test it! <a href="http://localhost:3000/login">http://localhost:3000/login</a></p>
+
+<p>If you enter <code class="highlighter-rouge">admin@admin.com : 123456</code> credentials you should be redirected to <code class="highlighter-rouge">/list</code>. If we enter wrong credentials, we should stay in <a href="http://localhost:3000/login">http://localhost:3000/login</a>.</p>
+
+<h2 id="headless-test">Headless Test</h2>
+
+<p>It’s possible to automate the kind of test mentioned before. Let’s make our requirements turn to live. Let’s create a couple of tests to probe the following:</p>
+
+<p><code class="highlighter-rouge">Success Test</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>1. Go to http://localhost:3000/login
+2. Insert email: admin@admin.com and password: 123456
+3. Expected result: you should be redirected to http://localhost:3000/panel
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Failure Test</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>1. Go to http://localhost:3000/login
+2. Insert email: admin@admin.com and password: incorrect
+3. Expected result: you should be redirected to http://localhost:3000/login
+</code></pre>
+</div>
+
+<p>For doing that we can use <a href="https://github.com/assaf/zombie/">zombie.js</a> that is a lightweight framework for headless testing, that is a browser emulation that runs without a graphic interface (no GUI). To install it, just run:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>npm install zombie --save-dev
+</code></pre>
+</div>
+
+<p>Once installed we can create a file to make a quick test, call it <code class="highlighter-rouge">./test/headless-tests.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Browser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'zombie'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">assert</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'assert'</span><span class="p">);</span>
+
+<span class="nx">Browser</span><span class="p">.</span><span class="nx">localhost</span><span class="p">(</span><span class="s1">'localhost'</span><span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
+
+<span class="c1">// create new browser instance</span>
+<span class="kd">var</span> <span class="nx">browser</span> <span class="o">=</span> <span class="nx">Browser</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+
+<span class="nx">browser</span><span class="p">.</span><span class="nx">visit</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+    <span class="nx">browser</span>
+        <span class="p">.</span><span class="nx">fill</span><span class="p">(</span><span class="s1">'email'</span><span class="p">,</span> <span class="s1">'admin@admin.com'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">fill</span><span class="p">(</span><span class="s1">'password'</span><span class="p">,</span> <span class="s1">'123456'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">pressButton</span><span class="p">(</span><span class="s1">'Login'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Success Test: '</span><span class="p">,</span> <span class="nx">browser</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">);</span>
+        <span class="p">});</span>
+<span class="p">});</span>
+
+</code></pre>
+</div>
+
+<p>In order to run this test, we need to have the webapp up and running in one console and open a second console:</p>
+
+<p><code class="highlighter-rouge">zombie.js test</code></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>node <span class="nb">test</span>/headless-tests.js
+
+Success Test:  /list
+
+</code></pre>
+</div>
+
+<p>Look in the terminal where you are running express, you’ll be able to see zombie.js requests:</p>
+
+<p><code class="highlighter-rouge">express server</code></p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>npm start
+
+<span class="gp">&gt; </span>express4crud@0.0.1 start /var/www/express4passport-local
+<span class="gp">&gt; </span>node ./bin/www
+
+GET /login 200 263.565 ms - 708
+POST /login 302 39.529 ms - 66
+GET /list 200 35.769 ms - 892
+
+</code></pre>
+</div>
+
+<p>We can do a similar test to probe, the failure case, just go ahead and change the password. And try again:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="o">+</span>        <span class="p">.</span><span class="nx">fill</span><span class="p">(</span><span class="s1">'password'</span><span class="p">,</span> <span class="s1">'incorrect'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>We’ll wrap all this test into a single test suite later on.</p>
+
+<h2 id="securitize-routes">Securitize Routes</h2>
+
+<p>It’ll be good to add some extra validation, to prevent unauthorized users access to the CRUD urls. We can check if exists session data, for authorized users express saves data into <code class="highlighter-rouge">req.user</code>. We can create an interceptor method called <code class="highlighter-rouge">adminAuth</code> to validate session data in <code class="highlighter-rouge">./routes/main.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">passport</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">Persons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/persons.js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Admins</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins.js'</span><span class="p">);</span>
+
+<span class="o">+</span><span class="kd">var</span> <span class="nx">adminAuth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">){</span>
+<span class="o">+</span>    <span class="c1">//authorize role</span>
+<span class="o">+</span>    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">req</span><span class="p">.</span><span class="nx">user</span> <span class="o">!=</span> <span class="s2">"undefined"</span><span class="p">){</span>
+<span class="o">+</span>        <span class="nx">next</span><span class="p">();</span>
+<span class="o">+</span>    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="o">+</span>        <span class="c1">//Not authorized redirect</span>
+<span class="o">+</span>        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+<span class="o">+</span>    <span class="p">}</span>
+<span class="o">+</span><span class="p">}</span>
+<span class="o">+</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'login'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'Login'</span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s1">'AdminLogin'</span><span class="p">,</span>
+    <span class="p">{</span> <span class="na">successRedirect</span><span class="p">:</span> <span class="s1">'/list'</span><span class="p">,</span>
+      <span class="na">failureRedirect</span><span class="p">:</span> <span class="s1">'/login'</span><span class="p">,</span>
+      <span class="na">failureFlash</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
+
+<span class="o">+</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/list'</span><span class="p">,</span> <span class="nx">adminAuth</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">'message'</span><span class="p">);</span>
+    <span class="nx">Persons</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">docs</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'list'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'List'</span><span class="p">,</span> <span class="na">persons</span><span class="p">:</span> <span class="nx">docs</span><span class="p">,</span> <span class="na">flashmsg</span><span class="p">:</span> <span class="nx">msg</span><span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>For each route that we want to securitize we will need to add the <code class="highlighter-rouge">adminAuth</code> as second parameter, that’s because route definition nature of express, that let you chain operations:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="nx">operation1</span><span class="p">,</span> <span class="nx">operation2</span><span class="p">,</span> <span class="nx">operation3</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="cm">/**
+    * If code gets here it means all 3 operations passed and called next()
+    */</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'index'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'Express'</span><span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+<p>Now if you try to access <a href="http://localhost:3000/list">http://localhost:3000/list</a> without being logged-in, you’ll be redirected to home. See you express terminal, and pay special attention to 304 redirects:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>npm start
+
+<span class="gp">&gt; </span>express4crud@0.0.1 start /var/www/express4passport-local
+<span class="gp">&gt; </span>node ./bin/www
+
+GET / 304 330.696 ms - -
+GET /css/style.css 200 4.117 ms - 111
+GET /list 302 4.984 ms - 58
+GET / 304 37.074 ms - -
+GET /css/style.css 200 1.558 ms - 111
+GET /list 302 2.479 ms - 58
+GET / 304 16.337 ms -
+
+</code></pre>
+</div>
+
+<p>Please securitize all the routes by adding adminAuth as first operation, excepting <code class="highlighter-rouge">/</code> and <code class="highlighter-rouge">/login</code>.</p>
+
+<h2 id="destroying-session-data">Destroying Session Data</h2>
+
+<p>Once we login there’s no way to logout let’s add a log-out link. For doing that we can start modifying the main layout <code class="highlighter-rouge">./views/layout.jade</code>:</p>
+
+<pre><code class="language-jade">doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width')
+    title= title
+    block css
+      link(rel='stylesheet', href='/css/style.css')
+    block js
+      script(src='http://localhost:35729/livereload.js')
+  body
++    -if (user) {
++    ul#menu
++      li Welcome
++        b  #{user.email}
++      li
++        a(href="/logout") Sign-Off
++    style.
++      ul#menu {
++        display:block;
++        list-style: none;
++        position: fixed;
++        top: 0;
++        background: #ccc;
++        margin: 0;
++        left: 0;
++        width: 100%;
++        padding: 10px 20px;
++      }
++      ul#menu li {
++        float: left;
++        padding: 0 10px;
++      }
++    - }
+    block content
+</code></pre>
+
+<p>Just added a menu list and some style. Let’s make a user variable be available for all templates, by adding an interceptor into <code class="highlighter-rouge">./routes/main.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">passport</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">Persons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/persons.js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Admins</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins.js'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">adminAuth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">){</span>
+    <span class="c1">//authorize role</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">req</span><span class="p">.</span><span class="nx">user</span> <span class="o">!=</span> <span class="s2">"undefined"</span><span class="p">){</span>
+        <span class="nx">next</span><span class="p">();</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="c1">//Not authorized redirect</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">+</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">+</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+<span class="o">+</span>    <span class="nx">next</span><span class="p">();</span>
+<span class="o">+</span><span class="p">});</span>
+<span class="o">+</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'login'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'Login'</span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s1">'AdminLogin'</span><span class="p">,</span>
+</code></pre>
+</div>
+
+<p>If we restart the server and login again, we’ll be able to see a top bar menu:</p>
+
+<p><img src="https://raw.githubusercontent.com/cortezcristian/express4passport-local/master/pics/logout-view-change.png" alt="Logout Top Bar" /></p>
+
+<p>Now it’s time to destroy session data. Every time users hit <code class="highlighter-rouge">/logout</code> url, we completly disconnect them in <code class="highlighter-rouge">./routes/main.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">passport</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">Persons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/persons.js'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Admins</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/admins.js'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">adminAuth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">){</span>
+    <span class="c1">//authorize role</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">req</span><span class="p">.</span><span class="nx">user</span> <span class="o">!=</span> <span class="s2">"undefined"</span><span class="p">){</span>
+        <span class="nx">next</span><span class="p">();</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="c1">//Not authorized redirect</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+    <span class="nx">next</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'login'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'Login'</span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s1">'AdminLogin'</span><span class="p">,</span>
+    <span class="p">{</span> <span class="na">successRedirect</span><span class="p">:</span> <span class="s1">'/list'</span><span class="p">,</span>
+      <span class="na">failureRedirect</span><span class="p">:</span> <span class="s1">'/login'</span><span class="p">,</span>
+      <span class="na">failureFlash</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
+
+<span class="o">+</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/logout'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+<span class="o">+</span>    <span class="nx">req</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
+<span class="o">+</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+<span class="o">+</span><span class="p">});</span>
+<span class="o">+</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/list'</span><span class="p">,</span> <span class="nx">adminAuth</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">'message'</span><span class="p">);</span>
+    <span class="nx">Persons</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">docs</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">'list'</span><span class="p">,</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'List'</span><span class="p">,</span> <span class="na">persons</span><span class="p">:</span> <span class="nx">docs</span><span class="p">,</span> <span class="na">flashmsg</span><span class="p">:</span> <span class="nx">msg</span><span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>Well… we are done! If you reach this point it means you successfully completed the authentication layer integration.</p>
+
+<h2 id="final">Final</h2>
+
+<p>If you want to see the complete demo, you can go ahead and clone this repo.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git clone git@github.com:cortezcristian/express4passport-local.git
+</code></pre>
+</div>
+
+<h2 id="moving-forward">Moving Forward</h2>
+
+<p>During the past 2 tutorials we’ve been generating, different kind of tests. It’ll be good to wrap them all inside a test suite with mocha. That’ll be our next tutorial.</p>
+
+  </div>
+
+</article>
+
+<!--  Disqus comments -->
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//cortezcristian.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Cristian Cortez</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Cristian Cortez</li>
+          <li><a href="mailto:cortez.cristian@gmail.com">cortez.cristian@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/cortezcristian"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cortezcristian</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/cortezcristian"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">cortezcristian</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Serial entrepreneur & Full-stack developer. Trainer on new technologies and creator of @emprendevs
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- bower:js -->
+<!-- endbower -->
+
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-61105584-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+</script>
+
+
+  </body>
+
+</html>
