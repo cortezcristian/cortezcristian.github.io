@@ -6,8 +6,8 @@
 </description>
     <link>https://cortezcristian.github.io/</link>
     <atom:link href="https://cortezcristian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 12 Aug 2016 12:42:43 -0300</pubDate>
-    <lastBuildDate>Fri, 12 Aug 2016 12:42:43 -0300</lastBuildDate>
+    <pubDate>Fri, 12 Aug 2016 12:57:11 -0300</pubDate>
+    <lastBuildDate>Fri, 12 Aug 2016 12:57:11 -0300</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -127,7 +127,7 @@ BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;I’m interested on how should the Phoenix devs be called (like LAMP, MEAN… PEAP?). Let’s see what we can build with this new technology in my next article. The other thing I want to explore is the sandboxing for this lang &lt;a href=&quot;https://github.com/christhekeele/exbox&quot;&gt;like Exbox&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’m interested on how should the Phoenix devs be called (like LAMP, MEAN… PEAP? &lt;code class=&quot;highlighter-rouge&quot;&gt;Phoenix Elixir AngularJS? PostgreSQL&lt;/code&gt;). Let’s see what we can build with this new technology in my next article. The other thing I want to explore is the sandboxing for this lang &lt;a href=&quot;https://github.com/christhekeele/exbox&quot;&gt;like Exbox&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Thu, 11 Aug 2016 23:01:44 -0300</pubDate>
         <link>https://cortezcristian.github.io/update/elixir/phoenix/2016/08/11/discovering-phoenix-and-elixir.html</link>
