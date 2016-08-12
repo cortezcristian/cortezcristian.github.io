@@ -6,9 +6,141 @@
 </description>
     <link>https://cortezcristian.github.io/</link>
     <atom:link href="https://cortezcristian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 06 Aug 2016 13:47:07 -0300</pubDate>
-    <lastBuildDate>Sat, 06 Aug 2016 13:47:07 -0300</lastBuildDate>
+    <pubDate>Fri, 12 Aug 2016 12:42:43 -0300</pubDate>
+    <lastBuildDate>Fri, 12 Aug 2016 12:42:43 -0300</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Discovering Elixir and Phoenix</title>
+        <description>&lt;p&gt;My first impressions using Phoenix and Elixir.&lt;/p&gt;
+
+&lt;h1 id=&quot;installation&quot;&gt;Installation&lt;/h1&gt;
+
+&lt;p&gt;In OS X simply run:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install elixir
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A few months ago a person aproached me in the colission conference to talk about Elixir, I was programming a lot with NodeJS so I thought it wasn’t ready for production. Recently I’ve seen an amazing inspirational demo app called &lt;a href=&quot;https://github.com/bigardone/phoenix-trello&quot;&gt;phoenix-trello&lt;/a&gt;. It’s a trello tribute build on top of Phoenix (also using Webpack, React and Redux), take a look here: https://phoenix-trello.herokuapp.com&lt;/p&gt;
+
+&lt;p&gt;After playing a little bit with its REPL (just type &lt;code class=&quot;highlighter-rouge&quot;&gt;iex&lt;/code&gt;), found some useful material and also a &lt;a href=&quot;https://github.com/elixir-lang/vim-elixir&quot;&gt;Vim plugin&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://elixir-lang.org/getting-started/introduction.html&quot;&gt;Elixir Docs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=lly-1UYmnFI&quot;&gt;Intro to Elixir Video&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;After that I decided it was time to install Phoenix so I follow the &lt;a href=&quot;http://www.phoenixframework.org/docs/installation&quot;&gt;official installation guide&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ mix local.hex
+$ mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I’ve heard a lot of things about this project, specially performance comparisons with NodeJS and Express.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.carbonfive.com/2016/04/19/elixir-and-phoenix-the-future-of-web-apis-and-apps/&quot;&gt;Elixir and Phoenix: The Future of Web APIs and Apps?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.akitaonrails.com/2015/12/03/the-obligatory-flame-war-phoenix-vs-node-js&quot;&gt;The Obligatory “Flame War” Phoenix vs Node.js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;creating-my-first-project&quot;&gt;Creating my first project&lt;/h2&gt;
+
+&lt;p&gt;So let’s create a web project.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ mix phoenix.new web
+$ cd web
+$ mix phoenix.server
+...
+[info] Running Web.Endpoint with Cowboy using http://localhost:4000
+[info] GET /
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/t9h1az5gueazocn/Screenshot%202016-08-11%2019.49.05.png?dl=1&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;What is this sorcery? After watching the video in http://www.phoenixframework.org/docs I was able to understand a little more about the structure.&lt;/p&gt;
+
+&lt;p&gt;Right after that some error appeared because I didn’t install PostgreSQL as suggested in this guide &lt;a href=&quot;https://gist.github.com/likethesky/abb00e5aedc38ee9f711&quot;&gt;elixirphoenix.bash&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ mix phoenix.server
+...
+[info] Running Web.Endpoint with Cowboy using http://localhost:4000
+[info] GET /
+[debug] Processing by Web.PageController.index/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[error] Postgrex.Protocol (#PID&amp;lt;0.2935.0&amp;gt;) failed to connect: ** (Postgrex.Error) tcp connect: connection refused - :econnrefused
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So installing it:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install postgresql
+...
+To have launchd start postgresql at login:
+  ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+Then to load postgresql now:
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+Or, if you don't want/need launchctl, you can just run:
+  postgres -D /usr/local/var/postgres
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;After that we do start the database, do a &lt;code class=&quot;highlighter-rouge&quot;&gt;psql&lt;/code&gt; to get into it and if some error arise &lt;a href=&quot;http://stackoverflow.com/a/28690238/467034&quot;&gt;just create a new database&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+$ psql -h localhost
+psql (9.5.1)
+Type &quot;help&quot; for help.
+
+cristian=#\q
+
+$ createuser -d postgres # new user will be allowed to create databases. See config/dev.exs
+$ psql -d postgres
+postgres=# createdb
+postgres-# \l
+$ mix ecto.create
+$ mix phoenix.server
+[info] Running Web.Endpoint with Cowboy using http://localhost:4000
+12 Aug 00:02:00 - info: compiled 6 files into 2 files, copied 3 in 1.5 sec
+[info] GET /
+[debug] Processing by Web.PageController.index/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 53ms
+npm install -g brunch^C
+BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
+       (v)ersion (k)ill (D)b-tables (d)istribution
+^C%
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And that’s it! It looks like I forgot &lt;code class=&quot;highlighter-rouge&quot;&gt;mix ecto.create&lt;/code&gt; from the begining.&lt;/p&gt;
+
+&lt;p&gt;It’s working as expected now! I learned about some nodejs utils like &lt;a href=&quot;http://brunch.io/&quot;&gt;brunch&lt;/a&gt; that are convinient if you have them installed:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm install -g brunch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I’m interested on how should the Phoenix devs be called (like LAMP, MEAN… PEAP?). Let’s see what we can build with this new technology in my next article. The other thing I want to explore is the sandboxing for this lang &lt;a href=&quot;https://github.com/christhekeele/exbox&quot;&gt;like Exbox&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 11 Aug 2016 23:01:44 -0300</pubDate>
+        <link>https://cortezcristian.github.io/update/elixir/phoenix/2016/08/11/discovering-phoenix-and-elixir.html</link>
+        <guid isPermaLink="true">https://cortezcristian.github.io/update/elixir/phoenix/2016/08/11/discovering-phoenix-and-elixir.html</guid>
+        
+        
+        <category>update</category>
+        
+        <category>elixir</category>
+        
+        <category>phoenix</category>
+        
+      </item>
     
       <item>
         <title>Creating an interactive E-learning Platform</title>
