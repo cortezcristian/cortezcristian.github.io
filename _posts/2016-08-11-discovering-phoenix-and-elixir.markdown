@@ -118,4 +118,4 @@ It's working as expected now! I learned about some nodejs utils like [brunch](ht
 $ npm install -g brunch
 ```
 
-I'm interested on how should the Phoenix devs be called (like LAMP, MEAN... PEAP?). Let's see what we can build with this new technology in my next article. The other thing I want to explore is the sandboxing for this lang [like Exbox](https://github.com/christhekeele/exbox).
+I'm interested on how should the Phoenix devs be called (like LAMP, MEAN... PEAP? `Phoenix Elixir AngularJS? PostgreSQL`). Let's see what we can build with this new technology in my next article. The other thing I want to explore is the sandboxing for this lang [like Exbox](https://github.com/christhekeele/exbox).
