@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Discovering Elixir and Phoenix"
-date:   2016-08-11 23:01:44 -0300
+title: Discovering Elixir and Phoenix
+date: 2016-08-12T02:01:44.000+00:00
 categories: update elixir phoenix
-description: My first impressions using Phoenix and Elixir.
+description: My first impressions using Phoenix and Elixir. :D
 comments: true
----
 
+---
 My first impressions using Phoenix and Elixir.
 
 # Installation
